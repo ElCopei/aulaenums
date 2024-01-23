@@ -11,6 +11,7 @@ import java.util.Scanner;
 import entities.Departament;
 import entities.HourContract;
 import entities.Worker;
+import entities.enums.WorkerLevel;
 
 
 public class Program {
@@ -25,10 +26,13 @@ public class Program {
         System.out.println("Enter worker data: ");
         System.out.println("Name: ");
         String name = sc.nextLine();
+        System.out.println("Level: ");
+        String workerLevel = sc.nextLine();
         System.out.println("Base salary: ");
         Double baseSalary = sc.nextDouble();
         Departament d = new Departament(departament);
-        Worker w = new Worker(name, baseSalary, d);
+        //Worker w = new Worker(name, baseSalary, d);
+        Worker w = new Worker(name,WorkerLevel.valueOf(workerLevel), baseSalary, d);
         System.out.println("How many contracts to this worker?");
         int n = sc.nextInt();
         for (int i = 0; i < n; i++) {
@@ -59,7 +63,7 @@ public class Program {
     
        
         System.out.println("Name: "+ w.getName());
-        System.out.println("Departament: "+ d.getName());
+        System.out.println("Departament: "+ w.getDepartament().getName());
         System.out.println("Income for "+dateToCons+": "+ w.income(year, month));
 
         sc.close();

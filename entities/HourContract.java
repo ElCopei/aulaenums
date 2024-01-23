@@ -51,7 +51,7 @@ public class HourContract {
         this.hours = hours;
     }
     
-    public double totalValue(){
+    public double totalValue(){ // delegação
         return ValuePerHour*hours;
     }
 

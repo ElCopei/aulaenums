@@ -2,7 +2,6 @@ package entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import entities.HourContract;
 import entities.enums.WorkerLevel;
@@ -26,17 +25,14 @@ public class Worker {
         // construtor, mas sim inicia a lista vazia na declaração
     }
 
+    public Worker() {
+    }
+
     public Worker(String name, Double baseSalary, Departament departament) {
         this.name = name;
         this.baseSalary = baseSalary;
         this.departament = departament;
     }
-
-    public void AddContract(HourContract contract) {
-        contracts.add(contract);
-
-    }
-
     public String getName() {
         return name;
     }
@@ -76,6 +72,10 @@ public class Worker {
     // implementação dos métodos da classe
     public void removeContract(HourContract contract) {
         contracts.remove(contract);
+    }
+    public void AddContract(HourContract contract) {
+        contracts.add(contract);
+
     }
 
     public Double income(Integer year, Integer month) {
