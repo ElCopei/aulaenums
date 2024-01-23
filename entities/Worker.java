@@ -1,5 +1,6 @@
 package entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -23,6 +24,12 @@ public class Worker {
         this.departament = departament;
         // Quando há uma composição com lista, esta n é passada como argumento no
         // construtor, mas sim inicia a lista vazia na declaração
+    }
+
+    public Worker(String name, Double baseSalary, Departament departament) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+        this.departament = departament;
     }
 
     public void AddContract(HourContract contract) {
@@ -72,15 +79,16 @@ public class Worker {
     }
 
     public Double income(Integer year, Integer month) {
-        double sum = baseSalary;
-        Calendar cal = Calendar.getInstance();
+        Double sum = baseSalary;
         for (HourContract c : contracts) {
-            int c_year = cal.get(Calendar.YEAR);
-            int c_month = cal.get(Calendar.MONTH);
-            if (c.getDate()) {
+            LocalDate c_date = c.getDate();
+            int c_month = c_date.getMonthValue();
+            int c_year = c_date.getYear();
+            if (year==c_year && month==c_month) {
                 sum += c.totalValue();
             }
         }
+        return sum;
     }
 
 }
